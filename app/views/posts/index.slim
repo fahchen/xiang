@@ -1,0 +1,8 @@
+h1 posts index
+
+- @posts.each do |post|
+  div
+    = link_to post.title, post.slug
+
+
+= link_to 'writting', admin_writting_path

@@ -1,0 +1,22 @@
+defaults: &defaults
+  name: Fah Chen
+  twitter: fahchen
+  weibo: fahchen
+  github: fahchen
+  email: 06fahchen@gmail.com
+  # Google Analytics
+  ga_id: abcdefg
+
+  login: account@email.com
+  password: password
+
+  dropbox: abcdefg
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -1,0 +1,21 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  sessions:
+    login: 'login'
+    password: 'password'
+    sign_in: 'sign in'
+    sign_out: 'sign out'
+  posts:
+    title: 'title'
+    slug: 'slug'
+    content: 'content'
+    status: 'status'
+    published_at: 'published_at'
+    category: 'category'
+    status: 'status'
+    status_draft: 'draft'
+    status_published: 'published'
+    status_spam: 'spam'
+    create: 'create'

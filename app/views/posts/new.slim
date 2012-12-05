@@ -1,0 +1,29 @@
+= form_for @post do |f|
+  .field
+    = f.label t('posts.title')
+    = f.text_field :title
+  .field
+    = f.label t('posts.slug')
+    = f.text_field :slug
+  .field
+    = f.label t('posts.content')
+    = f.text_area :content
+  .field
+    = f.label t('posts.published_at')
+    = f.text_field :published_at
+  .field
+    = f.label t('posts.category')
+    = f.text_field :category
+  .field
+    = f.label t('posts.status')
+    = f.select :status, Post::STATUSES.collect { |status_name| [t("posts.status_#{status_name}"), status_name] }
+  .actions
+    =f.submit t('posts.create')
+
+coffee:
+  square = (x) -> x * x
+
+markdown:
+  #Header
+    Hello from #{"Markdown!"}
+    Second Line!
