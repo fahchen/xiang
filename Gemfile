@@ -46,11 +46,23 @@ gem 'therubyracer'
 
 gem 'slim' # templating engine
 
+# Markdown 格式
 gem 'redcarpet' # markdown
+gem "coderay"
 
 gem 'settingslogic' # setting
 
 gem "friendly_id", "~> 4.0.1" # friendly url
 gem 'babosa' # for chinese slug
 
-gem 'simple_form'
+group :development do
+  gem "pry-rails"
+  gem "pry-nav"
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
+
+gem 'kaminari'
+
+gem "dropbox-sdk"
+gem 'flickraw'

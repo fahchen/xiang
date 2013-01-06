@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
+  include ApplicationHelper
   rescue_from ActiveRecord::RecordNotFound do
     render_404
   end
@@ -15,6 +16,13 @@ class ApplicationController < ActionController::Base
       render :template => "/errors/#{status}", :format => [:html], :handler => [:erb], :status => status, :layout => "application"
     else
       render :template => "/errors/unknown", :format => [:html], :handler => [:erb], :status => status, :layout => "application"
+    end
+  end
+
+  protected
+  def require_admin
+    unless signed_in?
+      return render_404
     end
   end
 

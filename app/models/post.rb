@@ -7,13 +7,12 @@ class Post < ActiveRecord::Base
   end
 
   default_scope order('updated_at desc, published_at desc')
-  has_many :comments
 
   SOURCES = ['origin', 'twitter', 'weibo', 'instagram']
   CATEGORIES = ['life', 'nonlife']
   STATUSES = ['draft', 'published', 'spam']
   validates :status, inclusion: { in: STATUSES }
-  validates :status, inclusion: { in: CATEGORIES }
+  validates :category, inclusion: { in: CATEGORIES }
 
   class << self
     STATUSES.each do |status_name|
@@ -40,6 +39,9 @@ class Post < ActiveRecord::Base
   validates :content, presence: true
   validates :slug, uniqueness: true, if: Proc.new { |post| !post.slug.blank? }
   friendly_id :title, use: :slugged
+  def should_generate_new_friendly_id?
+    self.slug.blank?
+  end
 
   protected
   def prepare_params

@@ -1,3 +1,2 @@
-= @post.title
-div
-  = @post.content
+section.posts
+  = render partial: "#{@post.source}", locals: { post: @post, preview: false }

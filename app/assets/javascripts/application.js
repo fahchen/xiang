@@ -12,4 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require bootstrap-tooltip
+// require_tree .
+//= require bootstrap-datepicker
+//= require elastictxt
+//= require sisyphus
+//= require jquery.html5-fileupload
+//= require jquery.caret
+//= require common

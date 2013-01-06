@@ -1,8 +1,6 @@
-h1 posts index
-
-- @posts.each do |post|
-  div
-    = link_to post.title, post.slug
-
-
-= link_to 'writting', admin_writting_path
+section.posts
+  - @posts.each do |post|
+    = render partial: "#{post.source}", locals: { post: post, preview: true }
+.pagination
+  = link_to_previous_page @posts, t('posts.previous_page'), class: 'previous btn'
+  = link_to_next_page @posts, t('posts.next_page'), class: 'next btn'

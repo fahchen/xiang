@@ -4,13 +4,26 @@ html
     title #{XiangSettings.name} | Xiang
     meta name='keywords' content='blog'
     meta name='author' content='#{XiangSettings.name}'
-    link rel='icon' type='image/png' href=asset_path('favicon.png')
+    meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1, user-scalable=0" name="viewport"
+    meta content='true' name='HandheldFriendly'
+    meta http-equiv="Content-Type" content="text/html; charset=utf-8"
+    link rel='shortcut icon' type='image/png' href=asset_path('favicon.png')
+    link rel="apple-touch-icon" href=asset_path('favicon.png')
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
   body
+    = render 'layouts/header'
     = yield
+    = render 'layouts/footer'
+    javascript:
+      var ga_id = "#{XiangSettings.ga_id}";
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', ga_id]);
+      _gaq.push(['_trackPageview']);
 
-    div
-        - if signed_in?
-            =link_to t('sessions.sign_out'), sign_out_path, method: :delete
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();

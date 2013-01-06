@@ -1,0 +1,387 @@
+@mixin rounded($radius: 5px) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+@mixin boxShadow($horz, $vert, $blur, $spread, $color) {
+  -moz-box-shadow: $horz $vert $blur $spread $color;
+  -webkit-box-shadow: $horz $vert $blur $spread $color;
+  box-shadow: $horz $vert $blur $spread $color;
+}
+@mixin nonBorder {
+  border: none;
+  background: hsla(0, 0%, 0%, 0);
+  outline:0px none transparent;
+}
+
+body{
+  background-color: hsl(216, 17%, 94%);
+  font-family: 'Microsoft Yahei', arial, verdana, helvetica, sans-serif;
+  font-size: 1em;
+  line-height: 1em;
+  color: hsl(0, 0%, 17%);
+  // border: 1px solid red;
+  @media (min-width: 980px) {
+    max-width: 980px;
+  }
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+  margin: auto;
+}
+header, footer{
+  text-align: center;
+}
+header, footer, nav, article {
+  display: block;
+}
+// p, ol, ul, td {
+//   font-family: 'Microsoft Yahei', verdana, arial, helvetica, sans-serif;
+//   font-size: 13px;
+//   line-height: 18px;
+// }
+
+li {
+  display: inline-block;
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: hsl(0, 0%, 50%);
+  &:hover {
+    color: hsl(0, 0%, 20%);
+  }
+}
+pre{
+  overflow: auto;
+  background: hsl(0, 0%, 13%);
+  color: white;
+  border: 1px dashed hsl(0, 0%, 60%);
+  padding: 0.5em;
+}
+.btn{
+  background: hsla(0, 0%, 100%, 1);
+  overflow: hidden;
+  @include rounded(2px);
+  @include boxShadow(0, 1px, 5px, 0, hsla(0, 0%, 0%, 0.2));
+  padding: 2px;
+  margin: 0 2px;
+  // border: 1px solid hsl(207, 64%, 31%);
+  &:hover{
+    background: hsla(0, 0%, 100%, 0.2);
+  }
+}
+
+// ------------------icons--------------------
+@mixin icon_images($icon) {
+  background-image: url(image-path("icons/#{$icon}.png"));
+}
+@mixin icon_background($icon) {
+  background-image: url(image-path("icons/#{$icon}.png"));
+  &:hover {
+    background-position-y: 100%;
+  }
+}
+.icon {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  margin: 5px;
+  background-size: 100%;
+}
+.icon-twitter {
+  @include icon_background('twitter');
+}
+.icon-github {
+  @include icon_background('github');
+}
+.icon-weibo {
+  @include icon_background('weibo');
+}
+.icon-email {
+  @include icon_background('email');
+}
+// ------------------icons--------------------
+
+.clearfix {
+  &:before, &:after {
+    content: "";
+    display: table;
+  }
+}
+.logo{
+  margin-top: 20px;
+  .logo-img{
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    background-size: 100%;
+    background-image: url(image-path('logo.jpg'));
+    text-indent: -9999px;
+    @include rounded();
+  }
+}
+.user-meta {
+  @include boxShadow(0px, 6px, 10px, -3px, hsla(0, 0%, 0%, 0.2));
+  height: 100%;
+  @media (min-width: 480px) {
+    font-size: 1em;
+  }
+  @media (max-width: 480px) {
+    font-size: .7em;
+  }
+  position: relative;
+  .sign-btn {
+    position: absolute;
+    right: 13px;
+    top: 13px;
+  }
+  .user-meta-inner {
+    display: inline-block;
+    width: 270px;
+    margin-bottom: 20px;
+    text-align: left;
+    a {
+      color: hsl(0, 0%, 20%);
+    }
+    .logo {
+      position: absolute;
+    }
+    .blog-name {
+      margin-top: 23px;
+      margin-left: 70px;
+    }
+    .blog-owner {
+      position: absolute;
+      top: 43px;
+      margin-left: 70px;
+      z-index: 10;
+    }
+    .description {
+      position: relative;
+      top: 27px;
+      color: hsl(0, 0%, 40%);
+    }
+    .user-tooltip {
+      @media (min-width: 480px) {
+        width: 270px;
+      }
+      @media (max-width: 480px) {
+        width: 200px;
+      }
+      position: absolute;
+      top: 50px;
+      margin-left: 63px;
+      display: none;
+      @include rounded();
+      @include boxShadow(0, 1px, 5px, 0, hsla(0, 0%, 0%, 0.2));
+      background-color: #f5f5f5;
+      z-index: 9;
+      .user-tooltip-inner {
+        margin: 0 9px;
+        padding-top: 33px;
+        .user-fullname {
+          margin-top: 7px;
+          margin-bottom: -10px;
+        }
+        .user-bio {
+          margin-bottom: 0;
+          color: hsl(0, 0%, 40%);
+        }
+        .user-social {
+          margin: 0;
+        }
+        .user-email {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
+      }
+    }
+  }
+}
+
+// -------------------posts---------------------
+.posts, #preview {
+  margin: 20px 10px;
+  font-size: 0.9em;
+  article {
+    font-size: .9em;
+    line-height: 1.3em;
+    @include rounded();
+    @include boxShadow(0, 1px, 5px, 0, hsla(0, 0%, 0%, 0.2));
+    margin: 10px 0;
+    padding: 2px 2% 33px 2%;
+    width: 96%;
+    .content {
+      img {
+        @include rounded(2px);
+        @include boxShadow(0, 1px, 5px, 0, hsla(0, 0%, 0%, 0.2));
+        // border-width: 5px;
+        width: 100%;
+        max-height: 1024px;
+      }
+      code {
+        background-color: hsl(50, 81%, 94%);
+        border: 1px solid hsl(0, 0%, 87%);
+        @include rounded(3px);
+        padding: 0 2px;
+      }
+    }
+    .source {
+      float: left;
+      small {
+        border-left: 4px solid hsl(0, 0%, 85%);
+        padding-left: 10px;
+        color: hsl(0, 0%, 70%);
+        span {
+          cursor: pointer;
+          &:hover {
+            color: hsl(0, 0%, 30%);
+          }
+        }
+      }
+    }
+    .slug {
+      float: right;
+      small {
+        margin-left: 3px;
+        a {
+          color: hsl(0, 0%, 70%);
+          &:hover {
+            color: hsl(0, 0%, 30%);
+          }
+        }
+      }
+    }
+    background-color: hsl(208, 100%, 97%);
+  }
+}
+// -------------------posts---------------------
+
+// -------------------footer---------------------
+footer {
+  color: hsl(0, 0%, 40%);
+  font-size: 0.6em;
+}
+// -------------------footer---------------------
+
+// ---------------------writing--------------------
+.new-post {
+  margin: 0 10px;
+  .upload-images {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+  form {
+    width: 100%;
+  }
+  textarea, #preview {
+    margin: 0;
+    width: 100%;
+    @include nonBorder;
+    @media (min-width: 480px) {
+      min-height: 300px;
+    }
+    @media (max-width: 480px) {
+      min-height: 170px;
+    }
+    // &:focus {
+    //   border-bottom: 1px solid hsla(0, 0%, 0%, 0.2);
+    // }
+  }
+  .title {
+    width: 100%;
+    color: hsla(0, 0%, 0%, 0.7);
+    @include nonBorder;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 10px 0;
+    &:focus {
+      border-bottom: 1px solid hsla(0, 0%, 0%, 0.2);
+    }
+  }
+  .time {
+    width: 70px;
+    border: 1px solid hsla(0, 0%, 0%, 0.6);
+    @include nonBorder;
+  }
+  select {
+    @include nonBorder;
+  }
+  .slug {
+    @include nonBorder;
+    width: 100%;
+  }
+  .actions {
+    margin: 10px 0;
+  }
+}
+// ---------------------writing--------------------
+
+// -----------Dropdown-----------
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  display: none; // none by default, but block on "open" of the menu
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0; // override default ul
+  list-style: none;
+  background-color: hsl(216, 17%, 94%);;
+  border: 1px solid #ccc; // Fallback for IE7-8
+  border: 1px solid hsl(0, 0%, 10%);
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+  @include rounded(6px);
+  @include boxShadow(0, 5px, 10px, 0, hsla(0, 0%, 0%, 0.2));
+  -webkit-background-clip: padding-box;
+     -moz-background-clip: padding;
+          background-clip: padding-box;
+
+  // Aligns the dropdown menu to right
+  &.pull-right {
+    right: 0;
+    left: auto;
+  }
+
+  // Links within the dropdown menu
+  li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    white-space: nowrap;
+  }
+}
+// -----------Dropdown-----------
+
+//  -----------pagination--------------
+.pagination {
+  height: 20px;
+  font-size: 0.7em;
+  margin: 0 10px 10px 10px;
+  .previous {
+    float: left;
+  }
+  .next {
+    float: right;
+  }
+}
+//  -----------pagination--------------
+
+//  -----------signin--------------
+.signin {
+  margin: 10px;
+  // input[type=submit] {
+  //   @include nonBorder;
+  // }
+}
+//  -----------signin--------------

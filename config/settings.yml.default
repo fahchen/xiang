@@ -1,17 +1,24 @@
 defaults: &defaults
-  name: Fah Chen
+  name: Fah's blog
+  owner: 灰锅
+  fullname: Fah Chen
+  bio: ''
+  description: ''
+
   twitter: fahchen
   weibo: fahchen
   github: fahchen
   email: 06fahchen@gmail.com
   # Google Analytics
-  ga_id: abcdefg
+  ga_id: ''
 
-  login: account@email.com
-  password: password
+  login: test@test.com
+  password: 123456
 
-  dropbox: abcdefg
-
+  flickr:
+    app_key: ''
+    app_secret: ''
+    session_path: 'config'
 development:
   <<: *defaults
 

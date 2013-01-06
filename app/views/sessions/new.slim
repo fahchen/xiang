@@ -1,9 +1,10 @@
-= form_for :session, url: sessions_path do |f|
-  .field
-    = f.label t('sessions.login')
-    = f.text_field :login
-  .field
-    = f.label t('sessions.password')
-    = f.password_field :password
-  .actions
-    =f.submit t('sessions.sign_in')
+.signin
+  = form_for :session, url: sessions_path do |f|
+    .field
+      = f.label t('sessions.login')
+      = f.email_field :login
+    .field
+      = f.label t('sessions.password')
+      = f.password_field :password
+    .actions
+      =f.submit t('sessions.sign_in')

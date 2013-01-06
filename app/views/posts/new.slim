@@ -1,29 +1,28 @@
-= form_for @post do |f|
-  .field
-    = f.label t('posts.title')
-    = f.text_field :title
-  .field
-    = f.label t('posts.slug')
-    = f.text_field :slug
-  .field
-    = f.label t('posts.content')
-    = f.text_area :content
-  .field
-    = f.label t('posts.published_at')
-    = f.text_field :published_at
-  .field
-    = f.label t('posts.category')
-    = f.text_field :category
-  .field
-    = f.label t('posts.status')
-    = f.select :status, Post::STATUSES.collect { |status_name| [t("posts.status_#{status_name}"), status_name] }
-  .actions
-    =f.submit t('posts.create')
-
+.new-post
+  = file_field_tag :photo, class: 'js-upload-images upload-images', accept: 'image/*'
+  = form_for @post, url: { action: :show } do |f|
+    = f.text_field :title, class: "title", placeholder: t('posts.title')
+    .content
+      = f.text_area :content, placeholder: t('posts.content'), class: 'js-post-content'
+    .actions
+      = link_to t('posts.images'), "javascript:;", class: "btn btn-images js-images"
+      = link_to t('posts.preview'), "javascript:;", class: "btn btn-preview js-preview"
+    .actions
+      = f.text_field :published_at, as: :string, readonly: true, id: 'datepicker', placeholder: t('posts.published_at'), class: "time"
+      = f.select :status, Post::STATUSES.collect { |status_name| [t("posts.status_#{status_name}"), status_name] }, selected: Post::STATUSES.second
+      = f.select :category, Post::CATEGORIES.collect { |category_name| [t("posts.category_#{category_name}"), category_name] }, selected: Post::CATEGORIES.first
+    .actions
+      = link_to t('posts.create'), "javascript:;", class: "btn btn-publish js-publish"
+      - if @post.new_record?
+        = link_to t('posts.reset'), "javascript:;", class: "btn js-reset", confirm: 'sure?'
+      - else
+        = link_to t('posts.delete'), post_path(@post.id), method: :delete, confirm: 'sure?', :title => "删除本帖", class: "btn js-delete"
+    = f.text_field :slug, placeholder: t('posts.slug'), class: "slug"
 coffee:
-  square = (x) -> x * x
-
-markdown:
-  #Header
-    Hello from #{"Markdown!"}
-    Second Line!
+  $(document).ready ->
+    Xiang.initDatepicker()
+    Xiang.initElastic()
+    Xiang.initPreview()
+    Xiang.initCreate()
+    Xiang.initUploader()
+    Xiang.initClientSideDrafts()
