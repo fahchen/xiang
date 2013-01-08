@@ -1,6 +1,6 @@
 .new-post
   = file_field_tag :photo, class: 'js-upload-images upload-images', accept: 'image/*'
-  = form_for @post, url: { action: :show } do |f|
+  = form_for @post do |f|
     = f.text_field :title, class: "title", placeholder: t('posts.title')
     .content
       = f.text_area :content, placeholder: t('posts.content'), class: 'js-post-content'

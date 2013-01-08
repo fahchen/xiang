@@ -11,7 +11,7 @@ article.origin
   .slug
     - if preview || false
       small
-        =link_to '...', post_path(post), rel: 'tooltip', 'data-original-title' => 'click to open', 'data-placement' => 'left'
+        =link_to '...', show_path(post), rel: 'tooltip', 'data-original-title' => 'click to open', 'data-placement' => 'left'
     - if signed_in?
       small
         =link_to t('posts.edit'), edit_post_path(post.id), rel: 'tooltip', 'data-original-title' => 'edit', 'data-placement' => 'left'

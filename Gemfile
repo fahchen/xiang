@@ -5,7 +5,8 @@ gem 'rails', '3.2.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
+# gem 'mysql2'
+gem 'pg'
 
 
 # Gems used only for assets and not required
@@ -55,11 +56,16 @@ gem 'settingslogic' # setting
 gem "friendly_id", "~> 4.0.1" # friendly url
 gem 'babosa' # for chinese slug
 
-group :development do
+group :development, :test do
   gem "pry-rails"
   gem "pry-nav"
   gem 'better_errors'
   gem 'binding_of_caller'
+
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end
 
 gem 'kaminari'

@@ -13,6 +13,7 @@ class Post < ActiveRecord::Base
   STATUSES = ['draft', 'published', 'spam']
   validates :status, inclusion: { in: STATUSES }
   validates :category, inclusion: { in: CATEGORIES }
+  validates :source, inclusion: { in: SOURCES }
 
   class << self
     STATUSES.each do |status_name|
@@ -20,15 +21,13 @@ class Post < ActiveRecord::Base
         where(status: status_name)
       end
     end
-
-    STATUSES.each do |status_name|
-      define_method "#{status_name}?" do
-         self.status == status_name
-      end
-    end
   end
 
   STATUSES.each do |status_name|
+    define_method "#{status_name}?" do
+       self.status == status_name
+    end
+
     define_method "to_#{status_name}" do
        self.update_attributes status: status_name, published_at: Time.now
     end
@@ -45,8 +44,8 @@ class Post < ActiveRecord::Base
 
   protected
   def prepare_params
+    self.status ||= STATUSES.first
     self.source ||= SOURCES.first
-    return false unless SOURCES.include?(self.source)
     unless self.source == SOURCES.first
       # 'test #xiang-slug#test' content for twitter or weibo
       self.content.gsub!(/#xiang-.+#/i) do |s|
@@ -55,7 +54,6 @@ class Post < ActiveRecord::Base
       end
     end
     self.category ||= CATEGORIES.first
-    return false unless CATEGORIES.include?(self.category)
     if self.published_at.blank?
       self.published_at = Time.now
     end
