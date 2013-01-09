@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
     input.to_s.to_slug.normalize.to_s
   end
 
-  default_scope order('updated_at desc, published_at desc')
+  default_scope order('published_at desc, updated_at desc')
 
   SOURCES = ['origin', 'twitter', 'weibo', 'instagram']
   CATEGORIES = ['life', 'nonlife']

@@ -9,6 +9,7 @@ class PostsController < ApplicationController
     end
   end
   def create
+    prepare_published_at
     @post = Post.new(params[:post])
 
     respond_to do |format|
@@ -27,6 +28,7 @@ class PostsController < ApplicationController
   end
   def update
     @post = Post.find(params[:id])
+    prepare_published_at
     respond_to do |format|
       if @post.update_attributes(params[:post])
         format.html { redirect_to show_path(@post), notice: 'Post was successfully updated.' }
@@ -56,5 +58,15 @@ class PostsController < ApplicationController
   def preview
     content = XiangMarkdownConverter.preview_markdwon( params[:content] )
     render json: { content: content }
+  end
+
+  protected
+  def prepare_published_at
+    # binding.pry
+    published_at = params[:post][:published_at]
+    if published_at.to_s.match(/^\d{4}-\d{2}-\d{2}$/)
+      published_at = Time.now.to_s.gsub(/\d{4}-\d{2}-\d{2}/, published_at)
+    end
+    params[:post][:published_at] = published_at
   end
 end
