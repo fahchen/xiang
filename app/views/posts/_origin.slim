@@ -1,6 +1,6 @@
 article.origin
   .title
-    h3
+    h2
       = link_to post.title, show_path(post.slug)
   - if preview || false
     = markdown_preview(post.content, :class => 'content')
