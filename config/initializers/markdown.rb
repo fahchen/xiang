@@ -59,6 +59,7 @@ class XiangMarkdownConverter
       attrs.each do |attr|
         attr.strip!
       end
+      attrs[0] = 'javascript:;' if attrs[0].blank?
       %(<a href="#{attrs[0]}" rel="tooltip" data-original-title="#{attrs[1]}" data-placement="top">#{text}</a>)
     end
   end
