@@ -43,6 +43,7 @@ window.Xiang =
   initCreate: ->
     post_form = $('.new-post form')
     $('.js-publish').live 'click', ->
+      $.sisyphus().manuallyReleaseData()
       post_form.submit()
 
   # 往编辑器里面插入图片代码
@@ -79,11 +80,8 @@ window.Xiang =
 
   # 客户端草稿
   initClientSideDrafts : () ->
-    $('form.new_post, form.edit_post').sisyphus
-      timeout: 1,
-      onBeforeRestore: ->
-        if $('form.new_post').length == 0
-          $.sisyphus().manuallyReleaseData()
+    $('form.new_post').sisyphus
+      timeout: 1
 
     $('form .js-reset').click ->
       if confirm 'Are you sure?'
