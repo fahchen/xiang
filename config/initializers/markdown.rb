@@ -4,8 +4,10 @@ module Redcarpet
   module Render
     class XiangMarkdown < HTML
       def initialize(extensions={})
-        super(extensions.merge(:filter_html => true,
-         :hard_wrap => true))
+        super(extensions.merge(
+          :filter_html => true,
+          :hard_wrap => true
+        ))
       end
 
       def block_code(code, language)
@@ -49,15 +51,15 @@ class XiangMarkdownConverter
 
   private
   def self.tooltip(str)
-    # [foo]t('http://example.com/'| 'Optional Title Here'| 'click to open')
-    # link_to 'foo', rel: 'tooltip', 'data-original-title' => 'click to open', 'data-placement' => 'left'
+    # [foo]t(http://example.com/ | tooltip)
+    # link_to 'foo', rel: 'tooltip', 'data-original-title' => 'tooltip', 'data-placement' => 'left'
     str.gsub!(/\[(.+?)\]t\((.+?)\)/) do |s|
-      text = $1
+      text = $1.strip
       attrs = $2.split('|')
       attrs.each do |attr|
         attr.strip!
       end
-      %(<a href="#{attrs[0]}" title="#{attrs[1]}" rel="tooltip" data-original-title="#{attrs[2]}" data-placement="top">#{text.strip}</a>)
+      %(<a href="#{attrs[0]}" rel="tooltip" data-original-title="#{attrs[1]}" data-placement="top">#{text}</a>)
     end
   end
   def initialize
