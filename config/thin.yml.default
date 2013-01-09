@@ -1,0 +1,13 @@
+---
+address: 0.0.0.0
+timeout: 120
+port: 5000
+log: log/thin.log
+max_conns: 20480
+socket: /tmp/thin.sock
+
+max_persistent_conns: 4048
+environment: production
+servers: 3
+daemonize: true
+chdir: /xiang/dir
