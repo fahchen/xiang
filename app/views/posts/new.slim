@@ -14,7 +14,7 @@
     .actions
       = link_to t('posts.create'), "javascript:;", class: "btn btn-publish js-publish"
       - if @post.new_record?
-        = link_to t('posts.reset'), "javascript:;", class: "btn js-reset", confirm: 'sure?'
+        = link_to t('posts.reset'), "javascript:;", class: "btn js-reset"
       - else
         = link_to t('posts.delete'), post_path(@post.id), method: :delete, confirm: 'sure?', :title => "删除本文", class: "btn js-delete"
     = f.text_field :slug, placeholder: t('posts.slug'), class: "slug"

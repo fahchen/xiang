@@ -79,10 +79,18 @@ window.Xiang =
 
   # 客户端草稿
   initClientSideDrafts : () ->
-    $('.new_post form').sisyphus
+    $('form.new_post, form.edit_post').sisyphus
+      timeout: 1,
+      onBeforeRestore: ->
+        if $('form.new_post').length == 0
+          $.sisyphus().manuallyReleaseData()
+
     $('form .js-reset').click ->
-      $('form')[0].reset()
-      $.sisyphus().manuallyReleaseData()
+      if confirm 'Are you sure?'
+        $('form')[0].reset()
+        $.sisyphus().manuallyReleaseData()
+      else
+        false
 
   initDatepicker : ->
     datepickerOptions = 
