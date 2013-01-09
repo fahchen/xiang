@@ -41,10 +41,6 @@ header, footer, nav, article {
 //   line-height: 18px;
 // }
 
-li {
-  display: inline-block;
-  list-style-type: none;
-}
 a {
   text-decoration: none;
   color: hsl(0, 0%, 50%);
@@ -131,6 +127,10 @@ pre{
     font-size: .7em;
   }
   position: relative;
+  li {
+    display: inline-block;
+    list-style-type: none;
+  }
   .sign-btn {
     position: absolute;
     right: 13px;
@@ -156,6 +156,11 @@ pre{
       top: 43px;
       margin-left: 70px;
       z-index: 10;
+      a {
+        &:hover {
+          @include boxShadow(0, 1px, 5px, 0, hsla(0, 0%, 0%, 0.3));
+        }
+      }
     }
     .description {
       position: relative;
@@ -213,7 +218,15 @@ pre{
     margin: 10px 0;
     padding: 2px 2% 33px 2%;
     width: 96%;
+    background-color: hsla(208, 100%, 97%, 1);
+    &:hover {
+      background-color: hsla(208, 100%, 97%, .7);
+      @include boxShadow(0, 1px, 5px, 0, hsla(0, 0%, 0%, 0.5));
+    }
     .content {
+      ul {
+        padding-left: 2em;
+      }
       img {
         @include rounded(2px);
         @include boxShadow(0, 1px, 5px, 0, hsla(0, 0%, 0%, 0.2));

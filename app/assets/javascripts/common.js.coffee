@@ -79,10 +79,9 @@ window.Xiang =
 
   # 客户端草稿
   initClientSideDrafts : () ->
-    $('.new-post form').sisyphus
-      timeout : 2
+    $('.new_post form').sisyphus
     $('form .js-reset').click ->
-       $('form')[0].reset()
+      $('form')[0].reset()
       $.sisyphus().manuallyReleaseData()
 
   initDatepicker : ->

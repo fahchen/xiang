@@ -21,6 +21,7 @@ pickle-email-*.html
 # --------
 /config/database.yml
 /config/settings.yml
+/config/thin.yml
 
 /config/flickr_serialized_session.yml
 public/assets/

@@ -16,7 +16,7 @@
       - if @post.new_record?
         = link_to t('posts.reset'), "javascript:;", class: "btn js-reset", confirm: 'sure?'
       - else
-        = link_to t('posts.delete'), post_path(@post.id), method: :delete, confirm: 'sure?', :title => "删除本帖", class: "btn js-delete"
+        = link_to t('posts.delete'), post_path(@post.id), method: :delete, confirm: 'sure?', :title => "删除本文", class: "btn js-delete"
     = f.text_field :slug, placeholder: t('posts.slug'), class: "slug"
 coffee:
   $(document).ready ->
