@@ -13,9 +13,9 @@ module Redcarpet
       def block_code(code, language)
         language = 'text' if language.blank?
         begin
-          CodeRay.scan(code, language).div(line_numbers: :inline)
+          Pygments.highlight(code, lexer: language, formatter: 'html', options: {encoding: 'utf-8'})
         rescue
-          CodeRay.scan(code, language).text
+          Pygments.highlight(code, lexer: 'text', formatter: 'html', options:{encoding: 'utf-8'})
         end
       end
     end

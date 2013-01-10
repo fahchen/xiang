@@ -13,6 +13,7 @@
 * responsive design √
 * support emoji
 * admin
+* SEO
 
 ### Install
 * `mv database.yml.default database.yml`

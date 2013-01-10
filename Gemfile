@@ -49,7 +49,8 @@ gem 'slim' # templating engine
 
 # Markdown 格式
 gem 'redcarpet' # markdown
-gem "coderay"
+# Syntax highlighter
+gem "pygments.rb", "0.3.1"
 
 gem 'settingslogic' # setting
 
