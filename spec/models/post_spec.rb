@@ -137,6 +137,11 @@ describe Post do
         Post.create(title: 'title', content: 'content', source: 'test').should have(1).errors_on(:source)
       end
       
+      it "saving with the same identifier" do
+        post = Post.create title: 'test-title-1', content: 'test-content-1', slug: 'test-slug-1'
+        Post.create(title: 'test-title-2', content: 'test-content-2', slug: 'test-slug-2', identifier: post.identifier).should have(1).errors_on(:identifier)
+      end
+
     end
   end
 end

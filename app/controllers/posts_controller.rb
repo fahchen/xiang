@@ -45,7 +45,11 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
   def show
-    @post = Post.all_published.find_by_slug!(params[:slug])
+    if signed_in?
+      @post = Post.find_by_slug!(params[:slug])
+    else
+      @post = Post.all_published.find_by_slug!(params[:slug])
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -53,7 +57,11 @@ class PostsController < ApplicationController
     end
   end
   def index
-    @posts = Post.page params[:page]
+    if signed_in?
+      @posts = Post.page params[:page]
+    else
+      @posts = Post.all_published.page params[:page]
+    end
   end
   def preview
     content = XiangMarkdownConverter.preview_markdwon( params[:content] )

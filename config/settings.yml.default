@@ -19,6 +19,8 @@ defaults: &defaults
     app_key: ''
     app_secret: ''
     session_path: 'config'
+
+  disqus_shortname: fahchen
 development:
   <<: *defaults
 
